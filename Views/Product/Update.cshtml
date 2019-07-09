@@ -1,0 +1,56 @@
+﻿@model ProductUpdateViewModel
+
+<h2>Update</h2>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-3">
+        </div>
+        <div class="col-md-6">
+            <form asp-controller="Product" asp-action="Update" method="post">
+
+                <input asp-for="ProductId" type="hidden" />
+
+                <div class="mt-2">
+                    <input asp-for="Name" class="form-control" placeholder="Name" />
+                    <span asp-validation-for="Name" class="text-danger"></span>
+                </div>
+
+                <div class="mt-2">
+                    <input asp-for="Details" class="form-control" placeholder="Details" />
+                    <span asp-validation-for="Details" class="text-danger"></span>
+                </div>
+
+                <div class="mt-2">
+                    <input asp-for="Price" class="form-control" placeholder="Price" />
+                    <span asp-validation-for="Price" class="text-danger"></span>
+                </div>
+
+                <div class="mt-2">
+                    <select asp-for="CategoryId" asp-items="Model.Categories" class="form-control"></select>
+                    <span asp-validation-for="CategoryId" class="text-danger"></span>
+                </div>
+
+                <div class="mt-2">
+                    <p>
+                        <u>Upload Image:</u> &nbsp;&nbsp;
+                        <input type="file" name="image" />
+                    </p>
+                </div>
+
+                <div class="mt-2">
+                    <p>
+                        <u>Discontinue Item?</u>
+                        <input asp-for="IsDiscontinued" class="form-control" />
+                        <span asp-validation-for="IsDiscontinued" class="text-danger"></span>
+                    </p>
+                </div>
+
+                <div class="mt-2">
+                    <input type="submit" value="Save" class="btn btn-info" />
+                </div>
+            </form>
+        </div>
+        <div class="col-md-3"></div>
+    </div>
+</div>

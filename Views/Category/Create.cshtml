@@ -1,0 +1,28 @@
+﻿@model CategoryCreateViewModel
+
+<h2>Create</h2>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-3">
+        </div>
+        <div class="col-md-6">
+            <form asp-controller="Category" asp-action="Create" method="post">
+                <div class="mt-2">
+                    <input asp-for="Name" class="form-control" placeholder="Name" />
+                    <span asp-validation-for="Name" class="text-danger"></span>
+                </div>
+
+                <div class="mt-2">
+                    <input asp-for="Details" class="form-control" placeholder="Details" />
+                    <span asp-validation-for="Details" class="text-danger"></span>
+                </div>
+
+                <div class="mt-2">
+                    <input type="submit" value="Save" class="btn btn-info" />
+                </div>
+            </form>
+        </div>
+        <div class="col-md-3"></div>
+    </div>
+</div>

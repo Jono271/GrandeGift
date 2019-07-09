@@ -1,0 +1,35 @@
+﻿@model CustomerLoginViewModel
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-3">
+
+        </div>
+        <div class="col-md-6">
+            <div>
+                @Html.ValidationSummary()
+            </div>
+            <form asp-controller="Customer" asp-action="Login" method="post">
+                <div class="mt-2">
+                    <input asp-for="UserName" class="form-control" placeholder="Username" />
+                    <span asp-validation-for="UserName" class="text-danger" />
+                </div>
+
+                <div class="mt-2">
+                    <input asp-for="Password" class="form-control" placeholder="Password" type="password" />
+                    <span asp-validation-for="Password" class="text-danger" />
+                </div>
+
+                <div class="mt-2">
+                    <label asp-for="RememberMe">Remember Me?</label>
+                    <input asp-for="RememberMe" />
+                    <span asp-validation-for="RememberMe"></span>
+                </div>
+                <div class="mt-2">
+                    <input type="submit" value="Login" class="btn btn-info" />
+                </div>
+            </form>
+        </div>
+        <div class="col-md-3"></div>
+    </div>
+</div>

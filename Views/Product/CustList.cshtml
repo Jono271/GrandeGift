@@ -1,0 +1,60 @@
+﻿@model ProductCustListViewModel
+
+<div class="container">
+
+    <h1 class="my-4">
+        Products
+        <small>by Grande Gifts!</small>
+    </h1>
+
+    <div class="row">
+        <div class="container" style="outline-color: #222; ">
+            <form asp-controller="Product" asp-action="CustList" method="post">
+                <div class="col-sm-12">
+                    <div class="flex-column">                        
+                        <div class="col-md-3">
+                            <div class="row">
+                                <p>Minimum</p>
+                                @Html.TextBoxFor(m => m.MinPrice, null, new { @Value = Model.MinPrice })
+                            </div>
+                            </div>                        
+                        <div class="col-md-3">
+                            <p>Maximum</p>
+                            @Html.TextBoxFor(m => m.MaxPrice, null, new { @Value = Model.MaxPrice })
+                        </div>
+                        <div class="col-md-3">
+                            <select asp-for="CategoryId" asp-items="Model.Categories"></select>
+                        </div>
+                        <div class="col-md-3">
+                            <input type="submit" value="Refine" class="btn btn-info" />
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+
+
+        <div class="row">
+            @foreach (var item in Model.Products)
+            {
+                @if (item.IsDiscontinued != true)
+                {
+                    <div class="col-lg-6 portfolio-item">
+                        <div class="card h-100">
+                            <a href="#"><img class="card-img-top" src="@item.Image" alt="" /></a>
+                            <div class="card-body">
+                                <h4 class="card-title">
+                                    <a href="#">@item.Name</a>
+                                </h4>
+                                <p class="card-text">@item.Details</p>
+                                <strong class="card-text">@item.Price</strong>
+                                <a asp-controller="Cart" asp-action="Buy" asp-route-id="@item.ProductId">Add to cart</a>
+                            </div>
+                        </div>
+                    </div>
+                }
+            }
+        </div>
+    </div>
+</div>

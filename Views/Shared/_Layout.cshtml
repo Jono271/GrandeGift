@@ -1,0 +1,154 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link href="~/lib/bootstrap/dist/css/bootstrap.css" rel="stylesheet" />
+    <link href="~/CSS/main.css" rel="stylesheet" />
+    <title>@ViewBag.Title</title>
+</head>
+<body>
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark">
+        <img src="~/images/Logo.JPG" alt="Grade Gift" width="100" height="80" />
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarMain" aria-controls="navbarMain" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarMain">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="/Home/Index">Home <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="/Product/CustList">Products</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dropdown</a>
+                    <div class="dropdown-menu" aria-labelledby="dropdown04">
+                        <a class="dropdown-item" href="#">Action</a>
+                        <a class="dropdown-item" href="#">Another action</a>
+                        <a class="dropdown-item" href="#">Something else here</a>
+                    </div>
+                </li>
+            </ul>
+            <span class="nav-item my-2 my-lg-0">
+                @if (User.Identity.IsAuthenticated)
+                {
+                <span class="mr-sm-2">
+                    <a style="color: #ffffff;">&nbsp;&nbsp; Welcome @User.Identity.Name &nbsp;&nbsp;</a>
+                    <a>@Html.ActionLink("Logout", "Logout", "Customer")</a>
+
+                    @if (User.IsInRole("Admin"))
+                    {
+                        <button type="button" class="btn btn-primary btn-outline-primary">@Html.ActionLink("Category!", "List", "Category")</button>
+                        <button type="button" class="btn btn-primary btn-outline-primary">@Html.ActionLink("Product!", "List", "Product")</button>
+                    }
+                    else
+                    {
+                        <a>/@Html.ActionLink("View Profile", "Edit", "Customer")</a>
+                        <a>/@Html.ActionLink("Manage Address", "List", "Address")</a>
+                        <a>/@Html.ActionLink("Shopping Cart", "Index", "Cart")</a>
+                    }
+                </span>
+
+                }
+                else
+                {
+                    <span>
+                        @Html.ActionLink("Register..", "Register", "Customer")/
+                        @Html.ActionLink("Login", "Login", "Customer")
+                    </span>
+                }
+            </span>
+        </div>
+    </nav>
+
+    <div>
+        @RenderBody()
+    </div>
+
+    <footer id="footer">
+        <div class="container">
+            <div class="row h-100 justify-content-center align-items-center">
+                <div class="col-md-12 col-lg-4">
+                    <div class="footer-logo">
+                        <a class="navbar-brand" href="/Home/Index">Grande Gift</a>
+                        <p>
+                            Welcome to Grande Gift, your one stop shop for the best gift hampers, delivered to anyone in the world!
+                        </p>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-md-3 col-lg-2">
+                    <div class="list-menu">
+                        <h3>About us</h3>
+                        <ul class="list-unstyled">
+                            <li>
+                                <a href="/Home/AboutUs">About us</a>
+                            </li>
+                            <li>
+                                <a href="#">Advertisments</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-md-3 col-lg-2">
+                    <div class="list-menu">
+                        <h3>Contact Us</h3>
+                        <ul class="list-unstyled">
+                            <li>
+                                <a href="/Home/PrivacyPolicy">Privacy Policy</a>
+                            </li>
+                            <li>
+                                <a href="#">FAQ</a>
+                            </li>
+                            <li>
+                                <a href="#">Contact Us</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-md-3 col-lg-2">
+                    <div class="list-menu">
+                        <h3>Account</h3>
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                            <ul class="list-unstyled">
+                                <li>
+                                    <a>You're already logged in!</a><br />
+                                    <a>@Html.ActionLink("Logout", "Logout", "Customer")</a>
+                                </li>
+                            </ul>
+                        }
+                        else
+                        {
+                            <ul class="list-unstyled">
+                                <li>
+                                    <a href="/Customer/Login">Login</a>
+                                </li>
+                                <li>
+                                    <a href="/Customer/Register">Register</a>
+                                </li>
+                            </ul>
+                        }
+                    </div>
+                </div>
+                <div class="col-sm-6 col-md-3 col-lg-2">
+                    <div class="list-menu">
+                        <h3>Copyright</h3>
+                        <ul class="list-unstyled">
+                            <li>
+                                <a>Grande Gift © Jonathon Apostolovski - 2018</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Script -->
+    <script src="@Url.Content("~/lib/jquery/dist/jquery.js")"></script>
+    <script src="@Url.Content("~/lib/popper.js/dist/umd/popper.js")"></script>
+    <script src="@Url.Content("~/lib/bootstrap/dist/js/bootstrap.js")"></script>
+    <!-- End Script -->
+</body>
+</html>
